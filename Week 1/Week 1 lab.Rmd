@@ -1,0 +1,124 @@
+---
+title: "Week 1 Statistical computing"
+author: "MS 276"
+date: "September, 2017"
+output:
+  html_document: default
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+library(dplyr)
+library(ggplot2)
+```
+
+## Getting started with RStudio and RMarkdown
+
+Go ahead and launch RStudio by going to [r.skidmore.edu](https://r.skidmore.edu/).
+
+
+### Creating a reproducible lab report
+
+Going forward you should refrain from typing your code directly in the console, and
+instead type any code (final correct answer, or anything you're just trying out) in
+the R Markdown file and run the chunk using either the Run button on the chunk 
+(green sideways triangle) or by highlighting the code and clicking Run on the top 
+right corner of the R Markdown editor. If at any point you need to start over, you 
+can Run All Chunks above the chunk you're working in by clicking on the down
+arrow in the code chunk.
+
+
+## What's in a Markdown file? 
+
+To get you started, make a new Markdown filerun the following command to load the data.
+
+```{r, eval=TRUE}
+mtcars
+```
+
+You can do this by
+
+- clicking on the green arrow at the top right of the code chunk in the R Markdown (Rmd) 
+file, or
+- putting your cursor on this line, and hit the **Run** button on the upper right 
+corner of the pane, or
+- hitting `Ctrl-Shift-Enter`, or
+- typing the code in the console.
+
+This command instructs R to print the `mtcars` data set. 
+
+
+## Some Exploration
+
+Let's start to examine the data a little more closely. We can access the data in
+a single column of a data frame separately using a command like
+
+```{r view-boys}
+mtcars$mpg
+```
+
+This command will only show the miles per gallon. The dollar
+sign basically says "go to the data frame that comes before me, and find the 
+variable that comes after me".
+
+
+## Cheatsheets
+
+Your professor has stored a list of cheatsheets -- [https://github.com/statsbylopez/stats-with-r](https://github.com/statsbylopez/stats-with-r)  -- designed for R and RStudio. This should be your first place to look whenever you have questions. 
+
+
+## Code chunk options
+
+How can we improve our RMardown file? 
+
+Take a look at the RMarkdown file and identify what the following commands do:
+
+- `message = `
+- `warning = `
+- `eval = `
+- `echo = `
+- `include = `
+
+
+## Resources for learning R and working in RStudio
+
+That was a short introduction to R and RStudio, but we will provide you with more
+functions and a more complete sense of the language as the course progresses. 
+
+In this course we will be using R packages called dplyr for data wrangling 
+and ggplot2 for data visualization. If you are googling for R code, make sure
+to also include these package names in your search query. For example, instead
+of googling "scatterplot in R", google "scatterplot in R with ggplot2".
+
+As a final thought, I really liked [this tweet](https://twitter.com/dsquintana/status/904728820904845312). 
+
+Learning R will not come easy, but the payoffs are, um, sweet 
+
+## Building your RStudio skills
+
+
+
+#### Packages 
+
+What are packages in R? How do you call a package? What are the most important packages?
+
+####  Arithmetic tools
+
+Give examples of several arithmatic tools that one may want to use. 
+
+####  Storing objects
+
+How to store objects in R? What is a data frame and what does it consist of?  
+
+####  Taking a peek
+
+What do the `glimpse()`, `head()`, `str()`, `dim()` commands
+
+####  Workflow
+
+Describe each of the four panels in an RStudio session. Include how you look at a data frame, your history, and how to ask for help. 
+
+
+
+
+
