@@ -28,43 +28,43 @@ library(tidyverse)
 
 3. Identify what is wrong with the following code chunks:
 
--  (i) 
+-  
 
 ```{r}
 Prof.lopez <- "awesome"
 Prof.1opez
 ```
 
--  (ii) 
+-  
 
 ```{r}
 mtcars %>% mutate(gear.times.carb = gear(carb))
 ```
 
--  (iii) 
+-  
 
 ```{r}
 mtcars %>% filter(cyy == 6)
 ```
 
 
--  (iv) 
+-  
 
 ```{r}
 mtcars %>% filter(vs = 0)
 ```
 
 
-4. One of the more useful data sets in R is `nycflights13`. Download this package, and ensure that you have it loaded in R. 
+4. One of the more useful data sets in R is `nycflights13`. Download this package, and ensure that you have it loaded in R. Within that package is a data set called `flights`, which you can take a look at using the following code.
 
-Within that package is a data set called `flights`, which you can take a look at using the following code.
+- How many rows (flights) and columns (variables) are there in the flight data set?
 
-(i) How many rows (flights) and columns (variables) are there in the flight data set?
+- Identify a numerical variable and a character variable in the `flights` data. 
 
-(ii) Identify a numerical variable and a character variable in the `flights` data. 
+- Identify the average departure delay (`dep_delay`) in the flights data set.
 
-(iii) Identify the average departure delay (`dep_delay`) in the flights data set.
+- Use a tool that we have not yet discussed in class to answer **any** question of interest. As an example, what day of the month do most flights leave on? Do not answer this question, but answer something similar. I encourage you to use outside sources for code!
 
-(iv) Use a tool that we have not yet discussed in class to answer **any** question of interest. As an example, what day of the month do most flights leave on? Do not answer this question, but answer something similar. I encourage you to use outside sources for code!
+- Using Chapter 3 of the textbook, show *two* plots using the `flights` data set. They can be any type of plot -- try a few kinds!
 
-(v) Using Chapter 3 of the textbook, show *two* plots using the `flights` data set. They can be any type of plot -- try a few kinds!
+- Add better x-axis labels, y-axis labels, a title, and a subtitle to each of your two plots. Note: you only need to show the final versions of the two plots. 
