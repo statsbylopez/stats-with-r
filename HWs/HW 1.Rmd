@@ -19,9 +19,52 @@ library(tidyverse)
 +  Your file should contain the code/commands to answer each question in its own code block, which will also produce plots that will be automatically embedded in the output file
 +  **Each answer must be supported by written statements (unless otherwise specified) as well as any code used**: In other words, if the answer is `24`, you should write "The answer is 24" (as opposed to just showing the code and output).
 +  Include the names of anyone you collaborated with at the top of the assignment
-+  I recommend copying the raw .Rmd code from the Github page 
++  I recommend copying the raw .Rmd code from the Github page (link [https://raw.githubusercontent.com/statsbylopez/stats-with-r/master/HWs/HW%201.Rmd](https://raw.githubusercontent.com/statsbylopez/stats-with-r/master/HWs/HW%201.Rmd)). 
 
 
 1. Install the `tidyverse` package on your computer, and ensure that you can successfully load the library.  You do not need to show code or output for this answer. 
 
+2. Read Chapters 1 through 4 in R for Data Science, which can be found at ([http://r4ds.had.co.nz/](http://r4ds.had.co.nz/)). You do not need to show code or output for this answer
 
+3. Identify what is wrong with the following code chunks:
+
+-  (i) 
+
+```{r}
+Prof.lopez <- "awesome"
+Prof.1opez
+```
+
+-  (ii) 
+
+```{r}
+mtcars %>% mutate(gear.times.carb = gear(carb))
+```
+
+-  (iii) 
+
+```{r}
+mtcars %>% filter(cyy == 6)
+```
+
+
+-  (iv) 
+
+```{r}
+mtcars %>% filter(vs = 0)
+```
+
+
+4. One of the more useful data sets in R is `nycflights13`. Download this package, and ensure that you have it loaded in R. 
+
+Within that package is a data set called `flights`, which you can take a look at using the following code.
+
+(i) How many rows (flights) and columns (variables) are there in the flight data set?
+
+(ii) Identify a numerical variable and a character variable in the `flights` data. 
+
+(iii) Identify the average departure delay (`dep_delay`) in the flights data set.
+
+(iv) Use a tool that we have not yet discussed in class to answer **any** question of interest. As an example, what day of the month do most flights leave on? Do not answer this question, but answer something similar. I encourage you to use outside sources for code!
+
+(v) Using Chapter 3 of the textbook, show *two* plots using the `flights` data set. They can be any type of plot -- try a few kinds!
