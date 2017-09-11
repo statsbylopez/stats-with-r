@@ -20,7 +20,7 @@ library(tidyverse)
 +  **Each answer must be supported by written statements (unless otherwise specified) as well as any code used**: In other words, if the answer is `24`, you should write "The answer is 24" (as opposed to just showing the code and output).
 +  Include the names of anyone you collaborated with at the top of the assignment
 +  I recommend copying the raw .Rmd code from the Github page (link [https://raw.githubusercontent.com/statsbylopez/stats-with-r/master/HWs/HW%201.Rmd](https://raw.githubusercontent.com/statsbylopez/stats-with-r/master/HWs/HW%201.Rmd)). 
-
++  Homeworks are due at the start of class -- please print the HTML and hand in. 
 
 1. Install the `tidyverse` package on your computer, and ensure that you can successfully load the library.  You do not need to show code or output for this answer. 
 
