@@ -1,0 +1,118 @@
+---
+title: "Week 2 Statistical computing"
+author: "MS 276"
+date: "September, 2017"
+output:
+  pdf_document: default
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(eval = TRUE, warning = FALSE, message = FALSE, fig.height = 2.3, fig.width = 4)
+```
+
+## The airlines data set
+
+Today's class is going to focus on a data set containing all flights departing the three primary New York City airports in 2013. After installing the package, we take a look at the data set below. 
+
+```{r, echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE}
+library(nycflights13)
+library(tidyverse)
+head(flights) %>% print.data.frame()
+dim(flights)
+set.seed(0)
+flights <- flights %>% sample_n(10000)
+```
+
+The **codebook** (description of the variables) can be accessed by pulling up the help file:
+
+```{r help}
+?flights
+```
+
+
+The `flights` data frame is a massive trove of information. Let's think about 
+some graphs that we could make:
+
+- Do later flights (later in the day) have longer or shorter arrival delays?
+- How do departure delays vary by month?
+- Which NYC airport is the most likely to have a delay of any kind?
+
+
+### Grammar of graphics
+
+To plot `flights`, the following code puts `dep_time` on the x-axis and `arr_delay` on the y-axis.
+
+
+```{r}
+ggplot(data = flights) + 
+  geom_point(aes(x = dep_time, y = arr_delay))
+```
+
+- Describe the relationship between departure time and arrival delay. 
+
+- Identify the components of a ggplot graph
+
+
+### Mappings
+
+```{r}
+flights <- flights %>% mutate(vegas = (dest == "LAS"))
+ggplot(data = flights) + 
+  geom_point(aes(x = dep_time, y = arr_delay, colour = vegas))
+```
+
+What are other mappings that we could have used?
+
+### Facets
+
+
+```{r, fig.width=5}
+ggplot(data = flights) + 
+  geom_point(aes(x = dep_time, y = arr_delay)) + 
+  facet_wrap(~origin)
+```
+
+
+```{r, fig.width=5}
+ggplot(data = flights) + 
+  geom_point(aes(x = dep_time, y = arr_delay)) + 
+  facet_wrap(vegas ~ origin)
+```
+
+
+
+### Geometric objects
+
+```{r}
+ggplot(data = flights) + 
+  geom_point(aes(x = dep_time, y = arr_delay)) + 
+  geom_smooth(aes(x = dep_time, y = arr_delay))
+```
+
+```{r}
+ggplot(data = flights, aes(x = dep_time, y = arr_delay)) + 
+  geom_point() + 
+  geom_smooth()
+```
+
+
+
+```{r}
+ggplot(data = flights, aes(x = vegas, y = dep_delay)) + 
+  geom_boxplot()
+```
+
+
+```{r}
+ggplot(data = flights, aes(x = carrier)) + 
+  geom_bar()
+```
+
+
+
+
+
+
+
+
+
