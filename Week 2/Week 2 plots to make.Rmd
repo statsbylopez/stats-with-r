@@ -1,0 +1,96 @@
+---
+title: "Week 2 Statistical computing"
+author: "MS 276"
+date: "September, 2017"
+output:
+  pdf_document: default
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(eval = TRUE, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6, echo = FALSE)
+```
+
+
+For each plot
+
+1. Write the code that, intuitively, should get you most of the way towards a final plot
+
+2. Identify any new aspects of visualization that you'll need to look up
+
+Use the following code to get started
+
+
+```{r, echo = TRUE}
+set.seed(0)
+library(nycflights13)
+library(tidyverse)
+flights <- flights %>% sample_n(10000)
+```
+
+\newpage
+
+1. 
+
+```{r}
+ggplot(data = flights, mapping = aes(x = dep_delay, y = arr_delay)) + 
+  geom_point() + 
+  xlab("Departure Delay") + 
+  ylab("Arrival Delay") + 
+  ggtitle("Delay times for 10000 flights out of NYC") + 
+  facet_wrap(~origin)
+```
+
+
+
+\newpage
+
+2. 
+
+```{r}
+ggplot(data = flights, mapping = aes(x = air_time)) + 
+  geom_histogram() + 
+  xlab("Air time") + 
+  ylab("Number of flights") 
+```
+
+
+\newpage
+
+3. 
+
+```{r}
+ggplot(data = flights, mapping = aes(x = dep_delay, y = air_time, colour = origin, lty = origin)) + 
+  geom_smooth()  
+```
+
+
+\newpage
+
+4. 
+
+```{r}
+ggplot(data = flights, mapping = aes(x = as.factor(month), y = dep_delay)) + 
+  geom_jitter()  + 
+  annotate("text", x = 12, y = 780, label = "wtf?!?!")
+```
+
+
+\newpage
+
+5. 
+
+```{r}
+flights1 <- flights %>% mutate(delayed = arr_delay > 0) 
+ggplot(data = flights1, aes(x = as.factor(month))) + 
+  geom_bar(aes(fill = delayed), position = "fill") + 
+  xlab("Month") + ylab("Delay probabilities")
+```
+
+
+\newpage
+
+6. Using the `flights` data frame, construct code and a rough outline of a plot that you think would be interesting to look at. 
+
+```{r, echo = TRUE}
+head(flights) %>% print.data.frame()
+```
