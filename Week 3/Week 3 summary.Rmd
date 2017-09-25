@@ -1,0 +1,144 @@
+---
+title: "Week 3 Statistical computing"
+author: "MS 276"
+date: "September, 2017"
+fontsize: 11pt 
+output:
+  pdf_document: default
+---
+
+```{r global_options, include=FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(eval = TRUE, warning = FALSE, message = FALSE, fig.height = 2.6, fig.width = 5)
+```
+
+
+# okcupiddata
+
+Today we're going to look at cleaned profile data from OkCupid Profile Data for Introductory 
+Statistics and Data Science (Journal of Statistics Education, 2015)
+
+According to the packages' Github site, the data contain 
+
+    OkCupid users who were living within 25 miles
+    of San Francisco, had active profiles on June 26, 2012, were online in the 
+    previous year, and had at least one picture in their profile.
+
+Let's take a look:
+
+```{r}
+library(okcupiddata)
+names(profiles)
+```
+
+With data such as these, there are so many interesting questions we can consider! However, several will involve some data manipulation skills. 
+
+
+## Data Transformations
+
+We're going to identify five important `dplyr` functions that are appropriate for most data manipulation issues.
+
+\newpage
+
+#### Filter
+
+```{r, eval = FALSE}
+profiles %>% filter(drugs == "never")
+#
+profiles %>% filter(!drugs == "never")
+#
+profiles %>% filter(drugs == "never", sex == "m")
+#
+profiles %>% filter(drugs == "never" | sex == "m")
+#
+profiles %>% filter(drugs == "never", height > 70, sex == "m")
+#
+profiles %>% filter(drugs %in% c("never", "sometimes"))
+#
+profiles %>% filter(drugs = "never")
+#
+dftm <- profiles %>% filter(drugs == "never", height > 70, sex == "m")
+```
+
+
+#### Arrange
+
+```{r, eval = FALSE}
+profiles %>% arrange(age)
+#
+profiles %>% arrange(-age)
+#
+profiles %>% arrange(age, height)
+```
+
+
+
+#### Select
+
+```{r, eval = FALSE}
+profiles %>% select(age, body_type, diet, drinks)
+#
+profiles %>% select(age:drinks)
+#
+profiles %>% select(-age, -diet)
+```
+
+
+#### Mutate
+
+```{r, eval = FALSE}
+profiles %>% mutate(drug.free = (drugs == "never"))
+#
+profiles %>% mutate(feet = height/12, older = age > 40)
+#
+profiles %>% mutate(feet = floor(height/12), inches = height %% 12)
+#
+profiles %>% mutate(missing.income = is.na(income)) 
+# 
+profiles %>% mutate(exists.income = !is.na(income))
+```
+
+
+#### Summaries and grouping
+
+```{r, eval = TRUE}
+profiles %>% 
+  summarise(ave.age = mean(age), sd.age = sd(age), med.age = median(age), 
+            min.age = min(age), max.age = max(age), n.subjects = n())
+
+profiles %>% 
+  group_by(sex) %>% 
+  summarise(ave.age= mean(age))
+
+profiles %>% 
+  group_by(sex, drugs) %>% 
+  summarise(ave.height = mean(age), n.subjects = n())
+
+profiles %>% 
+  group_by(drugs, sex) %>% 
+  summarise(ave.height = mean(age), n.subjects = n())
+
+profiles %>% 
+  filter(orientation == "straight", !is.na(drugs)) %>% 
+  group_by(drugs, sex) %>% 
+  summarise(ave.height = mean(age), n.subjects = n()) %>%
+  arrange(ave.height)
+```
+
+
+### Putting it all together
+
+```{r, echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE}
+library(nycflights13)
+flights.summary <- flights %>% 
+  group_by(dest) %>% 
+  summarise(ave.delay = mean(arr_delay, na.rm = TRUE), n.flights = n()) %>% 
+  filter(n.flights > 100) %>%
+  arrange(-ave.delay) %>% 
+  slice(1:10)
+
+ggplot(flights.summary, aes(reorder(dest, ave.delay), ave.delay)) + geom_bar(stat = "identity") + 
+  labs(title = "Top 10 worst airports to fly into from NYC in 2013", 
+       subtitle =  "Among destinations with at least 100 flights", 
+          x = "Destination code", y = "Average arrival delay")
+```

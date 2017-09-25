@@ -1,0 +1,25 @@
+---
+title: "Week 3 statistical computing"
+author: "MS 276"
+date: "September, 2017"
+output:
+  pdf_document: default
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(eval = TRUE, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6)
+library(tidyverse); library(nycflights13)
+```
+
+## Write code for the following chart
+
+```{r, echo = FALSE}
+ggplot(flights, aes(dep_delay, air_time, colour = origin, lty = origin)) + 
+         geom_smooth() + 
+         xlim(0, 200) + 
+         facet_wrap(~month) + 
+         xlab("Departure Delay") + ylab("Air time") + 
+  ggtitle("Air time given departure delay among NYC flights")
+```
+
+
