@@ -23,3 +23,19 @@ ggplot(flights, aes(dep_delay, air_time, colour = origin, lty = origin)) +
 ```
 
 
+
+## Afterwards
+
+In pairs/groups of 3
+
+1. Install the `okcupiddata` package. 
+
+a. First, make a plot of height by age, and facet by pets. 
+
+b. Second, identify average age of each person given their `status` and `orientation`. 
+
+c. Next, identify the percents of each drug response (`drugs`) by drink category (`drinks`). 
+
+2. Think of a question you want to answer that involves at least three of the commands discussed in class
+
+3. Execute the code, and share your HTML file with your professor
