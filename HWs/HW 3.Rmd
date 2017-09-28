@@ -63,8 +63,6 @@ For this question, you do not need to show the data frame -- just the code used 
     
     iii. `inches.difference`, which represents the difference in height between your professor (77 inches) and the profile of interest (note: use your height here, in inches) 
 
-that we'll be using for this lab are (i) `mpg` and (ii) a random sample of `flights`, the latter of which can be found in the `nycflights13` package. See class notes for exact details on the flights data set, or enter `?flights` to use the Help tab.
-
 4. Calculate the average, median, and standard deviation of income among all of the profiles. Note -- there are people with missing incomes, in which case adding `na.rm = TRUE` to your code can ensure that you drop subjects whose incomes are missing. 
 
 5. Calculate the average income based on each type of pet preference, and arrange in order to find the pet category with the largest and smallest income levels. Is there any pattern?
