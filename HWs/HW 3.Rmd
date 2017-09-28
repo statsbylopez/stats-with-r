@@ -38,11 +38,17 @@ Refer to the help screen for information regarding each variable.
 1. Filter all profiles that are 
 
     i. at least 72 inches tall
+    
     ii. have a gemini astrological sign.
+    
     iii. smoke sometimes
+    
     iv. smoke sometimes and are at least 72 inches tall
+    
     v. home a gemini or aquarius astrological sign
+    
     vi. are between 72 and 76 inches tall, inclusive
+    
     
 For this question, you do not need to show the data frame -- just the code used to identiy these profiles. 
 
@@ -52,7 +58,9 @@ For this question, you do not need to show the data frame -- just the code used 
 3. Create the following new variables
 
     i. `hard.pass`, which represents any profile who responds `dislikes dogs and dislikes cats` to the `pets` variable
+    
     ii. `good.luck`, which represents any profile who responds `has dogs and has cats` to the `pets` variable
+    
     iii. `inches.difference`, which represents the difference in height between your professor (77 inches) and the profile of interest (note: use your height here, in inches) 
 
 that we'll be using for this lab are (i) `mpg` and (ii) a random sample of `flights`, the latter of which can be found in the `nycflights13` package. See class notes for exact details on the flights data set, or enter `?flights` to use the Help tab.
