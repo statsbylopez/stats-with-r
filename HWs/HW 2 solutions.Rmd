@@ -1,0 +1,121 @@
+---
+title: "Homework 2 solutions: Stats with R"
+author: "Mike Lopez"
+date: "September 2017"
+output:
+  html_document
+---
+
+```{r global_options, include=FALSE, message=FALSE, warning = FALSE}
+knitr::opts_chunk$set(eval = FALSE, fig.height = 3.4)
+library(tidyverse)
+library(nycflights13)
+```
+
+Start be executing the following code
+
+```{r, eval = TRUE}
+library(tidyverse)
+library(nycflights13)
+set.seed(0)
+flights <- flights %>% sample_n(1000)
+
+dim(flights)
+```
+
+1. How many rows and columns are in `flights`?
+
+**1000 flights and 19 variables**
+
+2. What does the `flight` variable describe in flights?
+
+**flight number**
+
+3. Make a scatter plot of `flight` versus arrival delay, and summarize the association. Does it surprise you that there (is/is not) an association between flight and arrival delay?
+
+```{r}
+ggplot(flights, aes(flight, arr_delay)) + geom_point()
+```
+
+**There's no obvious assocation -- not surprising, as flight number is mostly arbitrary.**
+
+4. There's something peculiar about the distribution of `flight`. What do you think it is?
+
+**No flights around flight number 2500-3000**
+
+
+5. What happens if you make a scatter plot of `flight` versus `tailnum`. Why is this plot not useful? 
+
+
+```{r}
+ggplot(flights, aes(flight, tailnum)) + geom_point()
+```
+
+**tailnum is a categorical variable**
+
+
+6. Make the following plot:
+
+```{r}
+qplot(data = flights, flight, arr_delay) + facet_wrap(~origin) + 
+  xlab("Flight number") + ylab("Arrival delay") +
+  ggtitle("Scatter plot of flight number versus arrival delay, by origin")
+```
+
+7. Here's two sets of code. Describe the difference between mapping color to your graph when using continuous versus categorical variables.
+
+```{r, eval = FALSE}
+ggplot(data = mpg, aes(x = displ, y = hwy, color = manufacturer)) + 
+  geom_point()
+
+ggplot(data = mpg, aes(x = displ, y = hwy, color = displ)) + 
+  geom_point()
+```
+
+**With continuous variables, the mapping is different shades of a color -- with categorical variables, we get entirely different colors**
+
+
+8. Here's two sets of code. Describe the difference between mapping shape to your graph when using continuous versus categorical variables (note: one set of code may not work -- explain why it doesn't!)
+
+```{r, eval = FALSE}
+ggplot(data = mpg, aes(x = displ, y = hwy, shape = displ)) + 
+  geom_point()
+
+ggplot(data = mpg, aes(x = displ, y = hwy, shape = drv)) + 
+  geom_point()
+```
+
+**Categorical variables can be mapped to shapes -- not continuous ones**
+
+
+
+9. Explain what's wrong with the following code:
+
+```{r}
+ggplot(data = mpg) 
++ geom_point(mapping = aes(x = displ, y = hwy))
+```
+
+**extra plus sign**
+
+10. One option is to color each car type by class. What are the advantages to using the faceting below? What are the disadvantages? How might the balance change if you had a larger dataset?
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) + 
+  facet_wrap(~ class, nrow = 2)
+```
+
+**Advantage is seeing pattern within each car type more easily -- downside is that you lose perspective on how each car type fits into rest of data**
+
+
+11. Run this code in your head and predict what the output will look like. Check your predictions.  What is the new code that is used here?
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE)
+```
+
+
+**Answers will vary**

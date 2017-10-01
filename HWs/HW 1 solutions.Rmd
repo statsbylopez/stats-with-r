@@ -1,0 +1,83 @@
+---
+title: "Homework 1: Stats with R"
+author: "Mike Lopez"
+date: "September 2017"
+output:
+  html_document
+---
+
+```{r global_options, include=FALSE, message=FALSE, warning = FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+library(tidyverse)
+```
+
+
+1. Install the `tidyverse` package on your computer, and ensure that you can successfully load the library.  You do not need to show code or output for this answer. 
+
+2. Read Chapters 1 through 4 in R for Data Science, which can be found at ([http://r4ds.had.co.nz/](http://r4ds.had.co.nz/)). You do not need to show code or output for this answer
+
+3. Identify what is wrong with the following code chunks:
+
+-  There are two spellings of `Prof.lopez`
+
+```{r}
+Prof.lopez <- "awesome"
+Prof.1opez
+```
+
+- Some type of sign needed -- addition, multiplication, etc
+
+```{r}
+mtcars %>% mutate(gear.times.carb = gear(carb))
+```
+
+-  `cyy` is not a variable
+
+```{r}
+mtcars %>% filter(cyy == 6)
+```
+
+
+-  Only one equals sign won't work
+
+```{r}
+mtcars %>% filter(vs = 0)
+```
+
+
+4. One of the more useful data sets in R is `nycflights13`. Download this package, and ensure that you have it loaded in R. Within that package is a data set called `flights`, which you can take a look at using the following code.
+
+```{r}
+library(nycflights13)
+dim(flights)
+flights %>% summarise(ave.delay = mean(dep_delay, na.rm = TRUE))
+```
+
+
+- How many rows (flights) and columns (variables) are there in the flight data set?
+
+**There are 336776 rows and 19 columns**
+
+- Identify a numerical variable and a character variable in the `flights` data. 
+
+**Answers will vary**
+
+- Identify the average departure delay (`dep_delay`) in the flights data set.
+
+**Average delay is 12.6 minutes**
+
+- Use a tool that we have not yet discussed in class to answer **any** question of interest. As an example, what day of the month do most flights leave on? Do not answer this question, but answer something similar. I encourage you to use outside sources for code!
+
+
+**Answers will vary**
+
+- Using Chapter 3 of the textbook, show *two* plots using the `flights` data set. They can be any type of plot -- try a few kinds!
+
+
+**Answers will vary**
+
+- Add better x-axis labels, y-axis labels, a title, and a subtitle to each of your two plots. Note: you only need to show the final versions of the two plots. 
+
+
+**Answers will vary**
+
