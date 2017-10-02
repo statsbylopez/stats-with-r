@@ -1,0 +1,41 @@
+---
+title: "Week 4 statistical computing"
+author: "MS 276"
+date: "September, 2017"
+output:
+  pdf_document: default
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(eval = TRUE, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6)
+library(tidyverse); library(okcupiddata)
+```
+
+## Write code for the following chart
+
+```{r, echo = FALSE}
+sum.profiles <- profiles %>% 
+  group_by(sex, orientation) %>% 
+  summarise(ave.height = mean(height, na.rm = TRUE), ave.age = mean(age, na.rm = TRUE)) 
+
+ggplot(sum.profiles, aes(orientation, ave.age)) + geom_bar(stat = "identity") + facet_wrap(~sex) + 
+  xlab("Orientation") + ylab("Average age") + ggtitle("Average profile age by gender and orientation")
+```
+
+
+
+## Afterwards
+
+In pairs/groups of 3
+
+1. Install the `fivethirtyeight` package. 
+
+a. First, make a plot of height by age, and facet by pets. 
+
+b. Second, identify average age of each person given their `status` and `orientation`. 
+
+c. Next, identify the percents of each drug response (`drugs`) by drink category (`drinks`). 
+
+2. Think of a question you want to answer that involves at least three of the commands discussed in class
+
+3. Execute the code, and share your HTML file with your professor
