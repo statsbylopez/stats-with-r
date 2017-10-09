@@ -18,4 +18,10 @@ df.so <- Pitching1 %>%
   summarize(total.SHO = sum(SHO)) %>% 
   
 ggplot(df.so, aes(yearID, total.SHO)) + geom_point()  
+
+## 6
+
+ggplot(Pitching1, aes(ERA)) + geom_histogram()
+Pitching2 <- Pitching1 %>% filter(IPouts >= 300) 
+ggplot(Pitching2, aes(ERA)) + geom_histogram()
 ```
