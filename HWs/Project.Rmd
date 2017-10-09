@@ -1,0 +1,132 @@
+---
+title: "Project requirements - stats with r"
+author: "Mike Lopez"
+date: "2017"
+output:
+  pdf_document
+---
+
+```{r global_options, include=FALSE, message=FALSE, warning = FALSE}
+knitr::opts_chunk$set(eval = FALSE, fig.height = 4, fig.width =5.5)
+library(tidyverse)
+library(fivethirtyeight)
+```
+
+***General instructions***: 
+
++  Make a new R Markdown file (.Rmd) -- one for each pair of students
++  Change the heading to include your author names
++  By midnight on the night before the presentation, you will email Professor Lopez
+with a copy of a knit HTML that you'll use
++  You will scroll through the knit HTML in front of your peers
+
+**Project summary**
+
+R is made awesome by those who build fun things. The goal of the project is to become *experts* at one of the following fun R packages. 
+
+- `rvest` for web scraping
+
+- `lubridate` for working with dates
+
+- `plotly` for interactive plots
+
+- `randomForest` for machine learning tools
+
+- `tidytext` for text mining and sentiment analysis
+
+- `corrr` package for exploring correlations
+
+**Details**
+
+- 10 minute presentation, done in pairs with each person speaking equally
+
+- You *must* use one of the data sets discussed in class. You may also supplement your presentation with outside data. I **strongly** recommend that you do not collect your own data. 
+
+- You *may not* copy and paste code or written word directly from an existing vignette. All code and ideas must be original
+
+- Your written version of the project should not include extensive writing. In other words, most of your presentation should include code, graphs, tables, pictures, etc.
+
+- There must be at least **4** visualizations in your report. Think about how to create awesome and interesting graphics using what we've discussed this year. Note -- pay careful attention to labelling. 
+
+**Additional notes**
+
+- Project packages are awarded on a first come, first serve basis over email. Once two groups have claimed a package, that package is no longer available. 
+
+- Each group must meet with Professor Lopez on 10/16 (9:00 - 11:30 am) to discuss progress and ideas. At that point, each group is responsible for at least *some* progress, which can consist of a few graphs, tables, pages, etc. Lack of progress by this meeting will result in a lower project grade. 
+
+- Points for creativity! Here are all the fun things you can do in R (not required, but possibly interesting) to make your presentation more enjoyable
+
+    - Add an emoji using the `emo` package 
+    
+    - Add a picture to a plot using `png` package or `magick` package
+    
+    - Use one of the plotting packages discussed in HW 4 -- these include `ggthemes`, `ggrepel`, `GGally`, `ggridgers`
+    
+    - Get rid of messages and warnings, and ensure that headings, text, and code are properly formatted.
+    
+    
+
+
+
+
+
+```{r}
+library(fivethirtyeight)
+library(tidyverse)
+glimpse(bechdel)
+?bechdel
+``` 
+
+Refer to the help screen for information regarding each variable. 
+
+## Part I: commands
+
+1. Use R code to answer the following questions
+
+- Identify the movies that passed the Bechdel test in 1980 (using the `binary` variable).
+
+- Identify the movies that grossed more than 2 billion dollars (using 2013 adjusted dollars)
+
+- Identify the percent of movies with `test` result `men-disagree`
+
+- Identify the median domestic gross (using 2013 adjusted dollars) of movies made since 2000 that have passed the Bechdel test (using the `binary` variable). 
+
+2. Replicate the following graphs. Note that to obtain percentages on a bar chart, you can use `geom_bar(position = "fill")`. 
+
+
+```{r, echo = FALSE, eval = TRUE}
+bechdel.sum <- bechdel %>% 
+  group_by(year) %>% 
+  summarise()
+
+ggplot(bechdel, aes(year, fill = clean_test)) + 
+  geom_bar() + 
+  labs(title = "# of movies at each Bechdel category", x = "Year", y = "Count")
+```
+
+```{r, echo = FALSE, eval = TRUE}
+
+ggplot(bechdel, aes(year, fill = clean_test)) + 
+  geom_bar(position = "fill") + 
+  labs(title = "% of movies at each Bechdel category", x = "Year", y = "Percent") 
+
+```
+
+3. Review the two charts above. Identify advantages and disadvantages to each visualiation. 
+
+4. Add a line of code to either plot above to change the legend title on the right hand side of the graph (which currently says `clean_test`). You may change to whatever label you think is more appropriate -- and you will need to consult code outside of class to figure this out. 
+
+5. Make histograms of `intgross_2013` and `log(intgross_2013)`. What are the differences?  What are the benefits and disadvantages to working on a log scale?
+
+6. Explore **at least one** of the following tools/packages using `ggplot()`. First, describe what the package is doing (or can do). Second make an interesting graph using the `bechdel` data. Points for creativity!
+
+- [ggthemes, https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html](https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html)
+
+- [ggrepel package, https://github.com/slowkow/ggrepel/blob/master/vignettes/ggrepel.md](https://github.com/slowkow/ggrepel/blob/master/vignettes/ggrepel.md)
+
+- [GGally package, http://ggobi.github.io/ggally/](http://ggobi.github.io/ggally/)
+
+- [ggridges, https://cran.r-project.org/web/packages/ggridges/vignettes/gallery.html](https://cran.r-project.org/web/packages/ggridges/vignettes/gallery.html)
+
+- [scale colour brewer, http://ggplot2.tidyverse.org/reference/scale_brewer.html](http://ggplot2.tidyverse.org/reference/scale_brewer.html)
+
