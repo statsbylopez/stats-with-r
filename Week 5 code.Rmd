@@ -1,0 +1,15 @@
+Suggested code:
+
+```{r}
+Pitching1 <- left_join(Pitching, Master.sum)
+
+Pitching1 %>% arrange(-SO)
+
+Pitching1 %>% 
+  group_by(yearID) %>% 
+  summarize(total.SO = sum(SO)) %>% 
+  arrange(-total.SO)
+  
+  
+
+```
