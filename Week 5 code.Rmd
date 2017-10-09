@@ -3,16 +3,16 @@ Suggested code:
 ```{r}
 Pitching1 <- left_join(Pitching, Master.sum)
 
-## 2
+## 3
 Pitching1 %>% arrange(-SO)
 
-## 3
+## 4
 Pitching1 %>% 
   group_by(yearID) %>% 
   summarize(total.SO = sum(SO)) %>% 
   arrange(-total.SO)
 
-## 4
+## 5
 df.so <- Pitching1 %>% 
   group_by(yearID) %>% 
   summarize(total.SHO = sum(SHO)) %>% 
