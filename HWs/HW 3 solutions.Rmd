@@ -139,7 +139,7 @@ drinks.sum %>% arrange(ave.age)
 
 7. Find the job type that has the largest percent of profiles that drink `desperately`. 
 
-
+ 
 ```{r}
  profiles %>% 
   mutate(drinks.desp = (drinks == "desperately")) %>%
