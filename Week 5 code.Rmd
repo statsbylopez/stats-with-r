@@ -1,0 +1,33 @@
+Suggested code:
+
+```{r}
+Pitching1 <- left_join(Pitching, Master.sum)
+
+## 3
+Pitching1 %>% arrange(-SO)
+
+## 4
+Pitching1 %>% 
+  group_by(yearID) %>% 
+  summarize(total.SO = sum(SO)) %>% 
+  arrange(-total.SO)
+
+## 5
+df.so <- Pitching1 %>% 
+  group_by(yearID) %>% 
+  summarize(total.SHO = sum(SHO)) %>% 
+  
+ggplot(df.so, aes(yearID, total.SHO)) + geom_point()  
+
+## 6
+
+ggplot(Pitching1, aes(ERA)) + geom_histogram()
+Pitching2 <- Pitching1 %>% filter(IPouts >= 300) 
+ggplot(Pitching2, aes(ERA)) + geom_histogram()
+
+## 7
+mod <- lm(ER ~ H, data = Pitching1)
+summary(mod)
+
+
+```
